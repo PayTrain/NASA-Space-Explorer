@@ -43,8 +43,7 @@ h1 {
 /* Date‐picker & button row */
 .filters {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex-direction: row;
   justify-content: center;
   margin-bottom: 20px;
   padding: 0 20px;
@@ -69,23 +68,12 @@ button {
   background-color: #d3d3d3;
   color: black;
   cursor: pointer;
+  width: auto;
 }
 button:hover {
   background-color: #bfbfbf;
 }
 
-/* Stack horizontally on wider screens */
-@media (min-width: 600px) {
-  .filters {
-    flex-direction: row;
-    padding: 0;
-  }
-  
-  input[type="date"],
-  button {
-    width: auto;
-  }
-}
 
 /* Gallery flex container */
 .gallery {
@@ -96,11 +84,11 @@ button:hover {
   justify-content: center;
 }
 
-/* Gallery items */
+/* Gallery items - Mobile first (1 column) */
 .gallery-item {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
-  max-width: 500px;
+  max-width: 100%;
   background: white;
   padding: 10px;
   border-radius: 8px;
@@ -110,10 +98,26 @@ button:hover {
   flex-direction: column;
 }
 
-/* Three columns on wider screens */
-@media (min-width: 1000px) {
+/* Tablet (sm: ≥576px) - 2 columns */
+@media (min-width: 576px) {
   .gallery-item {
-    flex: 0 1 31%;
+    flex: 0 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+/* Desktop (md: ≥768px) - 2 columns with more spacing */
+@media (min-width: 768px) {
+  .gallery-item {
+    flex: 0 1 calc(50% - 10px);
+  }
+}
+
+/* Large desktop (lg: ≥992px) - 3 columns */
+@media (min-width: 992px) {
+  .gallery-item {
+    flex: 0 1 calc(33.333% - 14px);
+    max-width: calc(33.333% - 14px);
   }
 }
 
@@ -151,57 +155,159 @@ button:hover {
   display: none;           /* shown via JS */
   align-items: center;     /* center modal */
   justify-content: center; /* center modal */
-  padding: 20px;
+  /* Mobile: minimal padding to maximize screen space */
+  padding: 10px;
   z-index: 1000;
 }
 
 #modalContent {
   background: #fff;
   color: #212121;
-  max-width: 900px;
   width: 100%;
-  max-height: 85vh;
+  /* Mobile-first: take up most of the screen with minimal padding */
+  max-width: 100%;
+  max-height: 95vh;
+  /* Keep scroll only as a safety net for extremely long text; with the image cap below
+     most modals will not need to scroll and will show full image + text up-front. */
   overflow: auto;
   border-radius: 8px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  padding: 20px 20px 16px;
+  padding: 15px;
   position: relative;
+}
+
+/* Tablet (sm: ≥576px) - Give more breathing room */
+@media (min-width: 576px) {
+  #modalOverlay {
+    padding: 15px;
+  }
+  
+  #modalContent {
+    max-width: 540px;
+    max-height: 90vh;
+    padding: 18px;
+  }
+}
+
+/* Tablet landscape / Small desktop (md: ≥768px) */
+@media (min-width: 768px) {
+  #modalOverlay {
+    padding: 20px;
+  }
+  
+  #modalContent {
+    max-width: 720px;
+    padding: 20px;
+  }
+}
+
+/* Desktop (lg: ≥992px) - Full experience */
+@media (min-width: 992px) {
+  #modalContent {
+    max-width: 900px;
+    padding: 24px;
+  }
 }
 
 .modal-close-btn {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 8px;
   background: #eee;
   border: 1px solid #ddd;
   border-radius: 4px;
-  padding: 6px 10px;
+  /* Mobile: slightly smaller close button */
+  padding: 5px 8px;
   cursor: pointer;
+  font-size: 14px;
 }
 .modal-close-btn:hover {
   background: #e0e0e0;
 }
 
+/* Tablet and up: larger close button */
+@media (min-width: 576px) {
+  .modal-close-btn {
+    top: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+}
+
 #modalInner h2 {
   margin-bottom: 6px;
+  /* Mobile: slightly smaller heading for better fit */
+  font-size: 1.4rem;
+}
+
+/* Tablet and up: larger heading */
+@media (min-width: 576px) {
+  #modalInner h2 {
+    font-size: 1.75rem;
+  }
 }
 
 .modal-date {
   color: #666;
   margin-bottom: 14px;
+  font-size: 0.9rem;
 }
 
+/* Tablet and up: standard font size */
+@media (min-width: 576px) {
+  .modal-date {
+    font-size: 1rem;
+  }
+}
+
+/* Ensure images scale down to fit alongside text without forcing scroll */
 .modal-media img {
   width: 100%;
   height: auto;
+  /* Mobile: more aggressive cap to leave room for text on small screens */
+  max-height: 40vh;
+  object-fit: contain; /* Show the whole image inside the available area */
   border-radius: 6px;
 }
 
+/* Tablet (sm: ≥576px) - slightly taller images */
+@media (min-width: 576px) {
+  .modal-media img {
+    max-height: 45vh;
+  }
+}
+
+/* Desktop (md: ≥768px) - more room for images */
+@media (min-width: 768px) {
+  .modal-media img {
+    max-height: 50vh;
+  }
+}
+
+/* Make videos responsive and also cap their height for the same reason as images */
 .video-embed {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%; /* 16:9 */
+  /* Use an aspect ratio for modern browsers and cap height so text is visible */
+  aspect-ratio: 16 / 9;
+  /* Mobile: cap video height to leave room for text */
+  max-height: 40vh;
   margin-bottom: 10px;
+}
+
+/* Tablet (sm: ≥576px) - slightly taller videos */
+@media (min-width: 576px) {
+  .video-embed {
+    max-height: 45vh;
+  }
+}
+
+/* Desktop (md: ≥768px) - more room for videos */
+@media (min-width: 768px) {
+  .video-embed {
+    max-height: 50vh;
+  }
 }
 
 .video-embed iframe {
@@ -217,6 +323,15 @@ button:hover {
 .modal-explanation {
   margin-top: 12px;
   line-height: 1.6;
+  /* Mobile: slightly smaller text for better fit */
+  font-size: 0.9rem;
+}
+
+/* Tablet and up: standard font size */
+@media (min-width: 576px) {
+  .modal-explanation {
+    font-size: 1rem;
+  }
 }
 
 .video-placeholder {
