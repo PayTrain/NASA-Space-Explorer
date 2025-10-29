@@ -341,11 +341,6 @@ button:hover {
   position: relative;
 }
 
-/* (Merged: sm ≥576px modal spacing) */
-
-/* (Removed duplicate: md ≥768px modal spacing merged above) */
-
-/* (Removed duplicate: lg ≥992px modal content merged above) */
 
 .modal-close-btn {
   position: absolute;
@@ -370,7 +365,6 @@ button:hover {
   color: #212121;
 }
 
-/* (Merged: sm ≥576px modal close button) */
 
 #modalInner h2 {
   margin-bottom: 6px;
@@ -383,7 +377,6 @@ button:hover {
   color: #061f4a;
 }
 
-/* (Merged: sm ≥576px modal heading) */
 
 .modal-date {
   /* NASA gray color for secondary information */
@@ -395,7 +388,6 @@ button:hover {
   font-weight: 400;
 }
 
-/* (Merged: sm ≥576px modal date) */
 
 /* Ensure images scale down to fit alongside text without forcing scroll */
 .modal-media img {
@@ -407,7 +399,6 @@ button:hover {
   border-radius: 6px;
 }
 
-/* (Merged: sm ≥576px modal images) */
 
 /* (Removed duplicate: md ≥768px modal images merged above) */
 
@@ -422,7 +413,6 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* (Merged: sm ≥576px modal videos) */
 
 /* (Removed duplicate: md ≥768px modal videos merged above) */
 
@@ -447,7 +437,6 @@ button:hover {
   color: #212121;
 }
 
-/* (Merged: sm ≥576px modal explanation) */
 
 .video-placeholder {
   /* NASA gray-warm-light background */
