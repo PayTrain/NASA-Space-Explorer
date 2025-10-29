@@ -54,8 +54,55 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   padding: 0 20px;
+}
+
+/* Fun Fact Section - "Did You Know?" */
+.fun-fact-section {
+  max-width: 800px;
+  margin: 0 auto 30px auto;
+  padding: 20px 25px;
+  /* NASA white background */
+  background: #ffffff;
+  /* NASA primary-alt-lightest for border accent */
+  border-left: 5px solid #02bfe7;
+  border-radius: 8px;
+  /* Subtle shadow with NASA primary darkest color */
+  box-shadow: 0 2px 8px rgba(6, 31, 74, 0.1);
+}
+
+.fun-fact-section h2 {
+  /* Inter for headings per NASA design system */
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  /* NASA primary darkest color */
+  color: #061f4a;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.fun-fact-text {
+  /* Public Sans for body text per NASA design system */
+  font-family: 'Public Sans', sans-serif;
+  /* NASA base text color */
+  color: #212121;
+  font-size: 1rem;
+  line-height: 1.6;
+  text-align: center;
+  font-style: italic;
+}
+
+/* Tablet and up: larger heading */
+@media (min-width: 576px) {
+  .fun-fact-section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .fun-fact-text {
+    font-size: 1.05rem;
+  }
 }
 
 /* Inputs and buttons */
@@ -172,7 +219,6 @@ button:hover {
 .placeholder {
   flex: 1 1 100%;
   text-align: center;
-  padding: 40px;
   /* NASA gray for placeholder text */
   color: #5b616b;
 }
@@ -428,3 +474,47 @@ button:hover {
   /* NASA primary-darker on hover */
   color: #0b3d91;
 }
+
+/* Mobile-specific size adjustments for landing page elements */
+@media (max-width: 575px) {
+  .site-header {
+    padding-top: 40px;
+  }
+  
+  /* Make logo smaller on mobile */
+  .logo {
+    width: 80px;
+  }
+  
+  /* Make main heading smaller on mobile */
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  /* Make button smaller on mobile */
+  button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+  
+  /* Make fun fact section heading smaller on mobile */
+  .fun-fact-section h2 {
+    font-size: 1.1rem;
+  }
+  
+  /* Make fun fact text smaller on mobile */
+  .fun-fact-text {
+    font-size: 0.85rem;
+  }
+  
+  /* Make placeholder icon smaller on mobile */
+  .placeholder-icon {
+    font-size: 32px;
+  }
+  
+  /* Make placeholder text smaller on mobile */
+  .placeholder p {
+    font-size: 14px;
+  }
+}
+

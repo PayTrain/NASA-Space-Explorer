@@ -6,6 +6,40 @@
 // 1) Data source URL (provided)
 const apodData = 'https://cdn.jsdelivr.net/gh/GCA-Classroom/apod/data.json';
 
+// Array of fun space facts - We'll pick one at random when the page loads
+const spaceFacts = [
+	"A day on Venus is longer than its year! Venus takes 243 Earth days to rotate once, but only 225 Earth days to orbit the Sun.",
+	"One million Earths could fit inside the Sun! The Sun contains 99.86% of the mass in our solar system.",
+	"Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons on Earth!",
+	"The footprints on the Moon will be there for 100 million years because there's no wind or water to erode them.",
+	"There are more stars in the universe than grains of sand on all the beaches on Earth!",
+	"Jupiter's moon Ganymede is the largest moon in our solar system and is even bigger than the planet Mercury.",
+	"Saturn's rings are made of billions of pieces of ice and rock, some as small as grains of sugar and others as big as houses!",
+	"The International Space Station travels at 17,500 miles per hour and orbits Earth every 90 minutes.",
+	"A year on Neptune lasts 165 Earth years! That means one season on Neptune lasts over 40 Earth years.",
+	"The Milky Way galaxy is on a collision course with the Andromeda galaxy, but they won't collide for another 4 billion years!",
+	"On Mars, the sunset appears blue instead of orange because of how dust particles scatter light in the thin atmosphere.",
+	"The largest known volcano in our solar system is Olympus Mons on Mars, which is about 3 times taller than Mount Everest!"
+];
+
+// Function to display a random space fact
+const displayRandomFact = () => {
+	// Get a random index from 0 to the length of the array
+	const randomIndex = Math.floor(Math.random() * spaceFacts.length);
+	
+	// Get the fact at that random index
+	const randomFact = spaceFacts[randomIndex];
+	
+	// Display it in the HTML element
+	const funFactElement = document.getElementById('funFact');
+	if (funFactElement) {
+		funFactElement.textContent = randomFact;
+	}
+};
+
+// Display a random fact when the page loads
+displayRandomFact();
+
 // 2) Grab key elements from the page
 const getImageBtn = document.getElementById('getImageBtn');
 const gallery = document.getElementById('gallery');
