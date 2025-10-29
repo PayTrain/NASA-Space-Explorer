@@ -94,14 +94,60 @@ h1 {
   font-style: italic;
 }
 
-/* Tablet and up: larger heading */
+/* Tablet and up (sm: ≥576px) */
 @media (min-width: 576px) {
+  /* Fun fact section */
   .fun-fact-section h2 {
     font-size: 1.6rem;
   }
-  
   .fun-fact-text {
     font-size: 1.05rem;
+  }
+
+  .gallery-item {
+    flex: 0 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+  }
+
+  /* Modal overlay/content spacing */
+  #modalOverlay {
+    padding: 15px;
+  }
+  #modalContent {
+    max-width: 540px;
+    max-height: 90vh;
+    padding: 18px;
+  }
+
+  /* Larger close button */
+  .modal-close-btn {
+    top: 10px;
+    right: 10px;
+    padding: 6px 10px;
+    font-size: 16px;
+  }
+
+  /* Modal heading */
+  #modalInner h2 {
+    font-size: 1.75rem;
+  }
+
+  /* Modal meta text */
+  .modal-date {
+    font-size: 1rem;
+  }
+
+  /* Media sizing in modal */
+  .modal-media img {
+    max-height: 45vh;
+  }
+  .video-embed {
+    max-height: 45vh;
+  }
+
+  /* Modal explanation text */
+  .modal-explanation {
+    font-size: 1rem;
   }
 }
 
@@ -152,7 +198,7 @@ button:hover {
 .gallery-item {
   flex: 1 1 100%;  /* full width by default */
   min-width: 280px;
-  max-width: 100%;
+  max-width: 380px;
   /* NASA white background */
   background: #ffffff;
   padding: 10px;
@@ -185,26 +231,37 @@ button:hover {
   height: 200px;
 }
 
-/* Tablet (sm: ≥576px) - 2 columns */
-@media (min-width: 576px) {
-  .gallery-item {
-    flex: 0 1 calc(50% - 10px);
-    max-width: calc(50% - 10px);
-  }
-}
-
-/* Desktop (md: ≥768px) - 2 columns with more spacing */
+/* Desktop (md: ≥768px) */
 @media (min-width: 768px) {
-  .gallery-item {
-    flex: 0 1 calc(50% - 10px);
+  /* Modal overlay/content spacing */
+  #modalOverlay {
+    padding: 20px;
   }
-}
+  /* (Merged: md ≥768px modal spacing) */
+  #modalContent {
+    padding: 20px;
+  }
 
-/* Large desktop (lg: ≥992px) - 3 columns */
-@media (min-width: 992px) {
   .gallery-item {
     flex: 0 1 calc(33.333% - 14px);
     max-width: calc(33.333% - 14px);
+  }
+
+  /* Media sizing in modal */
+  .modal-media img {
+    max-height: 50vh;
+  }
+  /* (Merged: md ≥768px modal images) */
+  .video-embed {
+    max-height: 50vh;
+  }
+}
+
+/* Large desktop (lg: ≥992px) */
+@media (min-width: 992px) {
+  /* Wider modal content */
+  #modalContent {
+    padding: 24px;
   }
 }
 
@@ -273,7 +330,6 @@ button:hover {
   color: #212121;
   width: 100%;
   /* Mobile-first: take up most of the screen with minimal padding */
-  max-width: 100%;
   max-height: 95vh;
   /* Keep scroll only as a safety net for extremely long text; with the image cap below
      most modals will not need to scroll and will show full image + text up-front. */
@@ -281,42 +337,15 @@ button:hover {
   border-radius: 8px;
   /* NASA-themed shadow with primary darkest color */
   box-shadow: 0 10px 30px rgba(6, 31, 74, 0.25);
-  padding: 15px;
+  padding: 15px 35px;
   position: relative;
 }
 
-/* Tablet (sm: ≥576px) - Give more breathing room */
-@media (min-width: 576px) {
-  #modalOverlay {
-    padding: 15px;
-  }
-  
-  #modalContent {
-    max-width: 540px;
-    max-height: 90vh;
-    padding: 18px;
-  }
-}
+/* (Merged: sm ≥576px modal spacing) */
 
-/* Tablet landscape / Small desktop (md: ≥768px) */
-@media (min-width: 768px) {
-  #modalOverlay {
-    padding: 20px;
-  }
-  
-  #modalContent {
-    max-width: 720px;
-    padding: 20px;
-  }
-}
+/* (Removed duplicate: md ≥768px modal spacing merged above) */
 
-/* Desktop (lg: ≥992px) - Full experience */
-@media (min-width: 992px) {
-  #modalContent {
-    max-width: 900px;
-    padding: 24px;
-  }
-}
+/* (Removed duplicate: lg ≥992px modal content merged above) */
 
 .modal-close-btn {
   position: absolute;
@@ -341,15 +370,7 @@ button:hover {
   color: #212121;
 }
 
-/* Tablet and up: larger close button */
-@media (min-width: 576px) {
-  .modal-close-btn {
-    top: 10px;
-    right: 10px;
-    padding: 6px 10px;
-    font-size: 16px;
-  }
-}
+/* (Merged: sm ≥576px modal close button) */
 
 #modalInner h2 {
   margin-bottom: 6px;
@@ -362,12 +383,7 @@ button:hover {
   color: #061f4a;
 }
 
-/* Tablet and up: larger heading */
-@media (min-width: 576px) {
-  #modalInner h2 {
-    font-size: 1.75rem;
-  }
-}
+/* (Merged: sm ≥576px modal heading) */
 
 .modal-date {
   /* NASA gray color for secondary information */
@@ -379,12 +395,7 @@ button:hover {
   font-weight: 400;
 }
 
-/* Tablet and up: standard font size */
-@media (min-width: 576px) {
-  .modal-date {
-    font-size: 1rem;
-  }
-}
+/* (Merged: sm ≥576px modal date) */
 
 /* Ensure images scale down to fit alongside text without forcing scroll */
 .modal-media img {
@@ -396,19 +407,9 @@ button:hover {
   border-radius: 6px;
 }
 
-/* Tablet (sm: ≥576px) - slightly taller images */
-@media (min-width: 576px) {
-  .modal-media img {
-    max-height: 45vh;
-  }
-}
+/* (Merged: sm ≥576px modal images) */
 
-/* Desktop (md: ≥768px) - more room for images */
-@media (min-width: 768px) {
-  .modal-media img {
-    max-height: 50vh;
-  }
-}
+/* (Removed duplicate: md ≥768px modal images merged above) */
 
 /* Make videos responsive and also cap their height for the same reason as images */
 .video-embed {
@@ -421,19 +422,9 @@ button:hover {
   margin-bottom: 10px;
 }
 
-/* Tablet (sm: ≥576px) - slightly taller videos */
-@media (min-width: 576px) {
-  .video-embed {
-    max-height: 45vh;
-  }
-}
+/* (Merged: sm ≥576px modal videos) */
 
-/* Desktop (md: ≥768px) - more room for videos */
-@media (min-width: 768px) {
-  .video-embed {
-    max-height: 50vh;
-  }
-}
+/* (Removed duplicate: md ≥768px modal videos merged above) */
 
 .video-embed iframe {
   position: absolute;
@@ -456,12 +447,7 @@ button:hover {
   color: #212121;
 }
 
-/* Tablet and up: standard font size */
-@media (min-width: 576px) {
-  .modal-explanation {
-    font-size: 1rem;
-  }
-}
+/* (Merged: sm ≥576px modal explanation) */
 
 .video-placeholder {
   /* NASA gray-warm-light background */
