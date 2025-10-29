@@ -154,10 +154,17 @@ const openModal = (item) => {
 	} else if (item.media_type === 'video') {
 		// Try to embed if it's a YouTube/Vimeo embed URL, otherwise provide a link
 		if (item.url && item.url.includes('embed')) {
+			// Extract video ID from embed URL to create a direct YouTube link
+			const videoId = item.url.match(/embed\/([a-zA-Z0-9_-]+)/)?.[1];
+			const watchUrl = videoId ? `https://www.youtube.com/watch?v=${videoId}` : item.url;
+			
 			mediaHTML = `
 				<div class="video-embed">
 					<iframe src="${item.url}" title="${title}" frameborder="0" allowfullscreen></iframe>
 				</div>
+				<p class="video-fallback">
+					<small>If the video doesn't load, <a href="${watchUrl}" target="_blank" rel="noopener">watch it on YouTube</a></small>
+				</p>
 			`;
 		} else if (item.url) {
 			mediaHTML = `
