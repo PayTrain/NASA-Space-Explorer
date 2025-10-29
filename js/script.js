@@ -84,14 +84,18 @@ const renderGallery = (items) => {
 			// Prefer hdurl for quality in modal; for the grid, a smaller "url" is fine
 			const imgSrc = item.url || item.hdurl || '';
 			visualHTML = `
-				<img src="${imgSrc}" alt="${title}" loading="lazy" />
+				<div class="image-wrapper">
+					<img src="${imgSrc}" alt="${title}" loading="lazy" />
+				</div>
 			`;
 		} else if (media_type === 'video') {
 			// Use the thumbnail if available; otherwise show a simple link preview
 			const thumb = item.thumbnail_url;
 			if (thumb) {
 				visualHTML = `
-					<img src="${thumb}" alt="${title} (video)" loading="lazy" />
+					<div class="image-wrapper">
+						<img src="${thumb}" alt="${title} (video)" loading="lazy" />
+					</div>
 				`;
 			} else {
 				visualHTML = `
